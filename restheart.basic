@@ -1,0 +1,35 @@
+Стек redheart ставится с исопльзованием docker контейнера:
+ curl https://raw.githubusercontent.com/SoftInstigate/restheart/master/docker-compose.yml --output docker-compose.yml && sudo docker-compose up
+
+После успешного запуска сервер restheart доступен на локальном порту 8080
+
+curl -i http://localhost:8080/ping
+HTTP/1.1 200 OK
+Connection: keep-alive
+Access-Control-Allow-Origin: *
+X-Powered-By: restheart.org
+Access-Control-Allow-Credentials: true
+Access-Control-Expose-Headers: Location, ETag, Auth-Token, Auth-Token-Valid-Until, Auth-Token-Location, X-Powered-By
+Content-Type: text/plain
+Content-Length: 25
+Date: Wed, 02 Jun 2021 19:22:37 GMT
+
+Для создания места хранения документов делаем 
+curl --user admin:secret -I -X PUT localhost:8080/collection
+
+Чтобы записать документ в место хранения collection:
+curl --user admin:secret -X POST localhost:8080/collection -d '{"a":2}' -H "Content-Type: application/json"
+
+Для создания места хранения файлов создаём директорию с расширением .files
+curl --user admin:secret -I -X PUT localhost:8080/collection.files
+
+Для загрузки файлов используем:
+http -v --auth admin:secret --form POST localhost:8080/collection.files  @./NVIDIA-Linux-x86_64-390.87.run properties='{"author":"SoftInstigate"}'
+
+Для валидации введёных форм И автоматического построения форм ввода используем
+https://medium.com/softinstigate-team/json-schema-validazione-e-salvataggio-di-un-form-con-angular-restheart-ec13cbdb5872
+
+Простейший вариант перпедачи данных через форму в файле basic_client.html - не работае,с ошибкой "Content-Type must be either: application/x-www-form-urlencoded or multipart/form-data", хотя в html явно указано enctype="multipart/form-data".
+
+
+
