@@ -1,12 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'my-app';
+export class AppComponent implements OnInit {
+
+
+  jsonFormObject: any;
+
+  constructor(
+    private http: HttpClient
+  ) { }
+
+  ngOnInit(): void {
+    const schemaURL = `assets/schemas/user.json`;
+    this.http
+      .get(schemaURL, { responseType: 'text' })
+      .subscribe(schema => {
+        this.jsonFormObject = JSON.parse(schema);
+      });
+  }
 
  submitForm(data: any) {
     /**
@@ -21,17 +38,7 @@ export class AppComponent {
 	**/
   }
 
-exampleJsonObject = {
-  "first_name": "Jane", "last_name": "Doe", "age": 25, "is_company": false,
-  "address": {
-    "street_1": "123 Main St.", "street_2": null,
-    "city": "Las Vegas", "state": "NV", "zip_code": "89123"
-  },
-  "phone_numbers": [
-    { "number": "702-123-4567", "type": "cell" },
-    { "number": "702-987-6543", "type": "work" }
-  ], "notes": ""
-};
+
 
 }
 
