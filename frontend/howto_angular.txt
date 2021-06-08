@@ -1,0 +1,17 @@
+Для генерации из JSON Web-формы, принимающей данные от пользователя и передающей на сервер, используется https://github.com/hamzahamidi/ajsf на стеке angular.
+
+Установка angular:
+https://dev-gang.ru/article/kak-ustanovit-angular-cli-v-ubuntu--x0w33qxxnb/
+
+После установки Angular, создаём новое приложение (или используем my-app из репозитория) и устанавливаем зависимости.
+ng new my-app
+cd my-app
+npm install @angular/cdk
+npm install @angular/flex-layout
+npm install @angular/material
+
+ng serve //для запуска приложения
+
+Готовая форма доступна на
+localhost:4200
+
