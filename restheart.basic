@@ -33,7 +33,7 @@ http -v --auth admin:secret --form POST localhost:8080/collection.files  @./NVID
 Для валидации введёных форм И автоматического построения форм ввода используем
 https://medium.com/softinstigate-team/json-schema-validazione-e-salvataggio-di-un-form-con-angular-restheart-ec13cbdb5872
 
-Простейший вариант передачи данных через форму в файле basic_client.html - не работае,с ошибкой "Content-Type must be either: application/x-www-form-urlencoded or multipart/form-data", хотя в html явно указано enctype="multipart/form-data".
+Простейший вариант передачи данных через форму в файле basic_client.html - не работает,с ошибкой "Content-Type must be either: application/x-www-form-urlencoded or multipart/form-data", хотя в html явно указано enctype="multipart/form-data".
 
 
 
