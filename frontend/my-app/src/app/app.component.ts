@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -18,12 +19,12 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     const schemaURL = `assets/schemas/user.json`;
-    console.log("AAAAAAAA");
     this.http
       .get(schemaURL, { responseType: 'text' })
       .subscribe(schema => {
         this.jsonFormObject = JSON.parse(schema);
       });
+
   }
 
  submitForm(data: any) {
@@ -37,8 +38,4 @@ export class AppComponent implements OnInit {
 	      .post('http://127.0.0.1:8080/collection', data, httpOptions).subscribe();
   }
 
-
-
 }
-
-

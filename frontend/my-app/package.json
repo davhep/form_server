@@ -10,6 +10,8 @@
   },
   "private": true,
   "dependencies": {
+    "@ajsf/bootstrap3": "^0.4.0-beta.1",
+    "@ajsf/bootstrap4": "^0.4.0-beta.1",
     "@ajsf/material": "^0.4.0-beta.1",
     "@angular/animations": "~12.0.3",
     "@angular/cdk": "^12.0.3",
@@ -22,6 +24,10 @@
     "@angular/platform-browser": "~12.0.3",
     "@angular/platform-browser-dynamic": "~12.0.3",
     "@angular/router": "~12.0.3",
+    "angular-schema-form": "^0.8.13",
+    "angular-schema-form-bootstrap": "^0.2.0",
+    "bootstrap": "^5.0.1",
+    "bootstrap-4": "^4.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.1.0",
     "zone.js": "~0.11.4"
