@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     const schemaURL = `assets/schemas/user.json`;
+    console.log("AAAAAAAA");
     this.http
       .get(schemaURL, { responseType: 'text' })
       .subscribe(schema => {
@@ -26,16 +27,14 @@ export class AppComponent implements OnInit {
   }
 
  submitForm(data: any) {
-    /**
-	let headers_object = new HttpHeaders({});
+    	let headers_object = new HttpHeaders({});
     	headers_object = headers_object.append('Content-Type', 'application/json');
-	headers_object = headers_object.append('Authorization', 'Basic ' + btoa('admin:changeit'));
+	headers_object = headers_object.append('Authorization', 'Basic ' + btoa('admin:secret'));
 	const httpOptions = {
 	      headers: headers_object
 	    };
-	    this.http
-	      .post('http://127.0.0.1:8080/db/users', data, httpOptions);
-	**/
+	this.http
+	      .post('http://127.0.0.1:8080/collection', data, httpOptions).subscribe();
   }
 
 

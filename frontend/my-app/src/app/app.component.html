@@ -5,7 +5,9 @@
 <div class="form-container">
 <json-schema-form
   [loadExternalAssets]="true"
-  [schema] = "jsonFormObject" >
+  [schema] = "jsonFormObject"
+  framework = "bootstrap-4"
+  (onSubmit)="submitForm($event)" >
 </json-schema-form>
 </div>
 
