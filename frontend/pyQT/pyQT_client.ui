@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>367</width>
-    <height>339</height>
+    <width>965</width>
+    <height>860</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,14 +17,24 @@
    <widget class="QPushButton" name="printButton">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>130</y>
-      <width>147</width>
+      <x>706</x>
+      <y>30</y>
+      <width>211</width>
       <height>48</height>
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>Load schema</string>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="jsonschemafile">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>30</y>
+      <width>661</width>
+      <height>51</height>
+     </rect>
     </property>
    </widget>
   </widget>
