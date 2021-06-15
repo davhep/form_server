@@ -1,0 +1,9 @@
+pyQT client
+
+seems like a solution portable to andorid/iOS
+
+remember - python 3.7 minimum (!!!)
+
+subprj for widget from json added https://github.com/agoose77/qt-jsonschema-form
+to enable it, make filelink ln -s qt-jsonschema-form/qt_jsonschema_form qt_jsonschema_form
+

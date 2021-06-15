@@ -1,5 +1,6 @@
 from PyQt5 import QtWidgets, uic
 import sys
+from qt_jsonschema_form import WidgetBuilder
 
 class Ui(QtWidgets.QMainWindow):
     def __init__(self):
