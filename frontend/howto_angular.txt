@@ -1,4 +1,5 @@
 Для генерации из JSON Web-формы, принимающей данные от пользователя и передающей на сервер, используется https://github.com/hamzahamidi/ajsf на стеке angular.
+М.б., лучше будет перейти на стековый https://github.com/json-schema-form/angular-schema-form
 
 Установка angular:
 https://dev-gang.ru/article/kak-ustanovit-angular-cli-v-ubuntu--x0w33qxxnb/

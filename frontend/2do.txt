@@ -1,3 +1,10 @@
-1) Передача содежимого формы в redheart
-2) Считывание исходного JSON из файла, а не в коде app.component.ts
-3) Оформление - сделать как примерно https://medium.com/softinstigate-team/json-schema-validazione-e-salvataggio-di-un-form-con-angular-restheart-ec13cbdb5872 (вроде работало)
+====
+2DO Оформление - сделать как примерно https://medium.com/softinstigate-team/json-schema-validazione-e-salvataggio-di-un-form-con-angular-restheart-ec13cbdb5872 (вроде работало)
+похоже, не всё так тривиально - и нужно подгонять JSON под стиль оформления
+====
+
+====
+DONE Передача содежимого формы в redheart
+====
+DONE Считывание исходного JSON из файла, а не в коде app.component.ts 
+====
