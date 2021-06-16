@@ -40,8 +40,8 @@
    <widget class="QPushButton" name="editJSON">
     <property name="geometry">
      <rect>
-      <x>350</x>
-      <y>140</y>
+      <x>20</x>
+      <y>120</y>
       <width>147</width>
       <height>48</height>
      </rect>
@@ -79,14 +79,55 @@
    <widget class="QPushButton" name="postJSON">
     <property name="geometry">
      <rect>
-      <x>340</x>
-      <y>370</y>
+      <x>280</x>
+      <y>220</y>
       <width>147</width>
       <height>48</height>
      </rect>
     </property>
     <property name="text">
      <string>POST JSON</string>
+    </property>
+   </widget>
+   <widget class="QTreeWidget" name="JSONtreeWidget">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>360</y>
+      <width>911</width>
+      <height>421</height>
+     </rect>
+    </property>
+    <column>
+     <property name="text">
+      <string notr="true">1</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QPushButton" name="showJSON">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>800</y>
+      <width>261</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Show current JSON</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="loadJSON">
+    <property name="geometry">
+     <rect>
+      <x>700</x>
+      <y>220</y>
+      <width>147</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Load JSON</string>
     </property>
    </widget>
   </widget>
