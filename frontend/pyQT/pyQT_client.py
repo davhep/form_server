@@ -15,14 +15,14 @@ class Ui(QtWidgets.QMainWindow):
         super(Ui, self).__init__()
         uic.loadUi('pyQT_client.ui', self)
 
-        self.button = self.findChild(QtWidgets.QPushButton, 'printButton') # Find the button
-        self.button.clicked.connect(self.printButtonPressed) # Remember to pass the definition/method, not the return value!
+        self.button = self.findChild(QtWidgets.QPushButton, 'selectSchema')
+        self.button.clicked.connect(self.selectSchemaButtonPressed)
 
-        self.buttonJE = self.findChild(QtWidgets.QPushButton, 'editJSON') # Find the button
-        self.buttonJE.clicked.connect(self.editJSONPressed) # Remember to pass the definition/method, not the return value!
+        self.buttonJE = self.findChild(QtWidgets.QPushButton, 'editJSON')
+        self.buttonJE.clicked.connect(self.editJSONPressed)
 
-        self.buttonPOST = self.findChild(QtWidgets.QPushButton, 'postJSON') # Find the button
-        self.buttonPOST.clicked.connect(self.postJSONPressed) # Remember to pass the definition/method, not the return value!
+        self.buttonPOST = self.findChild(QtWidgets.QPushButton, 'postJSON')
+        self.buttonPOST.clicked.connect(self.postJSONPressed)
 
         self.show()
 
@@ -30,11 +30,7 @@ class Ui(QtWidgets.QMainWindow):
         print(d)
         self.json_data = d
 
-    def printButtonPressed(self):
-        # This is executed when the button is pressed
-        print('printButtonPressed')
-        print(type(100))
-        a = 3
+    def selectSchemaButtonPressed(self):
         options = QFileDialog.Options()
         options |= QFileDialog.DontUseNativeDialog
         fileName, _ = QFileDialog.getOpenFileName(self,"Load JSON scheme file", "","All Files (*);;JSON schema files (*.json)", options=options)
@@ -46,38 +42,18 @@ class Ui(QtWidgets.QMainWindow):
         jfile = open(fileName)
         self.schema = json.load(jfile, object_pairs_hook=collections.OrderedDict)
 
-    def construct_multipart(self, data):
-        multiPart = QtNetwork.QHttpMultiPart(QtNetwork.QHttpMultiPart.FormDataType)
-        textPart = QtNetwork.QHttpPart()
-        #textPart.setHeader(QtNetwork.QNetworkRequest.ContentDispositionHeader, "form-data; name=\"%s\"" % key)
-        textPart.setBody(data)
-        multiPart.append(textPart)
-        return multiPart
-
-    def finished(self):
-      print("Connect finished")
-      print ("Finished: ", self.request.readAll())
-
     def auth_req(self, req, auth):
       print("Auth req")
       auth.setUser("admin")
       auth.setPassword("secret")
 
     def postJSONPressed(self):
-
-        #self.multipart = self.construct_multipart(self.json_data)
-
         url = self.findChild(QtWidgets.QLineEdit, 'urlEdit').text()
-        print(url)
         self.request_qt = QtNetwork.QNetworkRequest(QtCore.QUrl(url))
-        #self.request_qt.setHeader(QtNetwork.QNetworkRequest.ContentTypeHeader, ' multipart/form-data; boundary=%s' % self.multipart.boundary())
         self.request_qt.setHeader(QtNetwork.QNetworkRequest.ContentTypeHeader, 'application/json')
-        print(self.request_qt.rawHeader( "Content-Type".encode("utf-8") ))
         self.manager = QtNetwork.QNetworkAccessManager()
-        self.manager.finished.connect(self.finished)
         self.manager.authenticationRequired.connect(self.auth_req)
         self.request = self.manager.post(self.request_qt, json.dumps(self.json_data).encode("utf-8"))
-        self.request.finished.connect(self.finished)
 
     def editJSONPressed(self):
         builder = WidgetBuilder()
@@ -98,4 +74,3 @@ class Ui(QtWidgets.QMainWindow):
 app = QtWidgets.QApplication(sys.argv)
 window = Ui()
 app.exec_()
-

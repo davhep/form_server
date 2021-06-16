@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="printButton">
+   <widget class="QPushButton" name="selectSchema">
     <property name="geometry">
      <rect>
       <x>706</x>
