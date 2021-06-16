@@ -37,6 +37,58 @@
      </rect>
     </property>
    </widget>
+   <widget class="QPushButton" name="editJSON">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>140</y>
+      <width>147</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Edit Json</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>230</y>
+      <width>361</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>URL to POST:</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="urlEdit">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>290</y>
+      <width>911</width>
+      <height>42</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>http://localhost:8080/inventory</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="postJSON">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>370</y>
+      <width>147</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>POST JSON</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>
