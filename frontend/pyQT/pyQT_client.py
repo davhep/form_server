@@ -49,11 +49,38 @@ class Ui(QtWidgets.QMainWindow):
         self.buttonShowJSON = self.findChild(QtWidgets.QPushButton, 'showJSON')
         self.buttonShowJSON.clicked.connect(self.ShowJSONPressed)
 
+        self.buttonLoadJSON = self.findChild(QtWidgets.QPushButton, 'loadJSON')
+        self.buttonLoadJSON.clicked.connect(self.LoadJSONPressed)
+
         self.show()
 
     def on_json_data_change(self,d):
         print(d)
         self.json_data = d
+        self.ShowJSONPressed()
+
+    def getJetsonfinished(self, reply):
+        print("Get complete")
+        er = reply.error()
+
+        if er == QtNetwork.QNetworkReply.NoError:
+
+            bytes_string = reply.readAll()
+            print(str(bytes_string, 'utf-8'))
+            self.ShowJSON(json.loads(str(bytes_string, 'utf-8')))
+
+        else:
+            print("Error occured: ", er)
+            print(reply.errorString())
+
+
+    def LoadJSONPressed(self):
+        url = self.findChild(QtWidgets.QLineEdit, 'urlEdit').text()
+        self.request_qt = QtNetwork.QNetworkRequest(QtCore.QUrl(url))
+        self.manager = QtNetwork.QNetworkAccessManager()
+        self.manager.authenticationRequired.connect(self.auth_req)
+        self.manager.finished.connect(self.getJetsonfinished)
+        self.request = self.manager.get(self.request_qt)
 
     def ShowJSONPressed(self):
         self.ShowJSON(self.json_data)
@@ -61,6 +88,7 @@ class Ui(QtWidgets.QMainWindow):
     def ShowJSON(self, json_data_input):
         self.text_to_titem = TextToTreeItem()
         self.tree_widget= self.findChild(QtWidgets.QTreeWidget, 'JSONtreeWidget')
+        self.tree_widget.clear()
         self.tree_widget.setHeaderLabels(["Key", "Value"])
         self.tree_widget.header().setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
         root_item = QtWidgets.QTreeWidgetItem(["Root"])
