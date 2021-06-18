@@ -15,6 +15,11 @@
             "buil_color": {
 		"title": "Color of BUIL after 100 shots",
                 "type": "string"
-            }
+            },
+        "buil_photo": {
+            "title": "Photo of BUIL after 100 shootings",
+            "type": "string",
+            "urlsendto": "http://127.0.0.1:8080/inventory.files"
+        }
 	}
 }
