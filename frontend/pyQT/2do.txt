@@ -1,0 +1,11 @@
+Add file transfer capability
+===========================
+Add load and change JSON document
+===========================
+In browser PyQT5 execution
+===========================
+Android app build
+===========================
+iOS app build
+===========================
+
