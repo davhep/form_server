@@ -1,4 +1,7 @@
-Add file transfer capability
+Add file transfer capability:
+    1) upload file
+    2) add to JSON persistance url
+    3) add to JSON original path and file-name
 ===========================
 Add load and change JSON document
 ===========================

@@ -5,17 +5,19 @@
             "User mood after buil unpacking": {
 		"type": "string"
             },
-            "integerRangeSteps": {
+
+        "integerRangeSteps": {
                 "title": "Number of succesfull laser shots",
                 "type": "integer",
                 "minimum": 0,
                 "maximum": 100,
                 "multipleOf": 1
             },
-            "buil_color": {
+        "buil_color": {
 		"title": "Color of BUIL after 100 shots",
                 "type": "string"
             },
+
         "buil_photo": {
             "title": "Photo of BUIL after 100 shootings",
             "type": "string",
