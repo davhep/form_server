@@ -22,6 +22,19 @@
             "title": "Photo of BUIL after 100 shootings",
             "type": "string",
             "urlsendto": "http://127.0.0.1:8080/inventory.files"
-        }
+	    },
+	"sended_file": {
+		"type": "object",
+		"urlsendto": "http://127.0.0.1:8080/inventory.files",
+		"properties":{
+		"file_src":{
+				"type": "string"
+			},
+
+		"file_url": {
+				"type": "string"
+			}
+		}
 	}
+    }
 }

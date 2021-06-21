@@ -1,7 +1,3 @@
-Add file transfer capability:
-    1) upload file
-    2) add to JSON persistance url
-    3) add to JSON original path and file-name
 ===========================
 Add load and change JSON document
 ===========================
@@ -11,4 +7,15 @@ Android app build
 ===========================
 iOS app build
 ===========================
+Make documentation
+===========================
 
+
+
+===========================
+Done:
+Add file transfer capability:
+    1) upload file
+    2) add to JSON persistance url
+    3) add to JSON original path and file-name
+===========================

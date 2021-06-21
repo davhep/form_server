@@ -153,11 +153,11 @@ class Ui(QtWidgets.QMainWindow):
     def editJSONPressed(self):
         builder = WidgetBuilder()
         ui_schema = {
-            "buil_photo": {
-                "ui:widget": "remotesend"
-            },
             "buil_color": {
                 "ui:widget": "colour"
+            },
+            "sended_file": {
+                "ui:widget": "remotefilesend"
             }
 
         }

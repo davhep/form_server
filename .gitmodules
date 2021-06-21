@@ -1,3 +1,3 @@
 [submodule "frontend/pyQT/qt-jsonschema-form"]
 	path = frontend/pyQT/qt-jsonschema-form
-	url = https://github.com/agoose77/qt-jsonschema-form
+	url = https://github.com/davhep/qt-jsonschema-form
