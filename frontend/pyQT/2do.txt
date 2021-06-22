@@ -1,4 +1,6 @@
 ===========================
+sync of database and front-end JSON schemes
+===========================
 Add load and change JSON document
 ===========================
 In browser PyQT5 execution

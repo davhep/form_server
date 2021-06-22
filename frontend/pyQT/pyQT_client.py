@@ -37,6 +37,8 @@ class Ui(QtWidgets.QMainWindow):
         super(Ui, self).__init__()
         uic.loadUi('pyQT_client.ui', self)
 
+        self.json_data = {}
+
         self.button = self.findChild(QtWidgets.QPushButton, 'selectSchema')
         self.button.clicked.connect(self.selectSchemaButtonPressed)
 
@@ -67,7 +69,14 @@ class Ui(QtWidgets.QMainWindow):
 
             bytes_string = reply.readAll()
             print(str(bytes_string, 'utf-8'))
-            self.ShowJSON(json.loads(str(bytes_string, 'utf-8')))
+            json_data_temp=json.loads(str(bytes_string, 'utf-8'))
+            #restheart add _id and _etag, so we have to remove it (may be reusing?)
+            del json_data_temp["_id"]
+            del json_data_temp["_etag"]
+            print(json_data_temp)
+            self.json_data = json_data_temp
+            self.ShowJSON(self.json_data)
+
 
         else:
             print("Error occured: ", er)
@@ -161,7 +170,7 @@ class Ui(QtWidgets.QMainWindow):
             }
 
         }
-        form = builder.create_form(self.schema, ui_schema)
+        form = builder.create_form(self.schema, ui_schema, self.json_data)
         form.show()
         form.widget.on_changed.connect(lambda d: self.on_json_data_change(d))
 
