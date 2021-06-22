@@ -148,8 +148,9 @@ class Ui(QtWidgets.QMainWindow):
 
         }
         form = builder.create_form(self.schema, ui_schema, self.json_data)
-        form.show()
         form.widget.on_changed.connect(lambda d: self.on_json_data_change(d))
+        form.show()
+
 
 
 app = QtWidgets.QApplication(sys.argv)
