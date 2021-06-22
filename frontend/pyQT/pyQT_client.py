@@ -7,6 +7,7 @@ import json
 import argparse
 import collections
 from json import dumps
+import requests
 
 from qt_jsonschema_form import WidgetBuilder
 
@@ -61,35 +62,20 @@ class Ui(QtWidgets.QMainWindow):
         self.json_data = d
         self.ShowJSONPressed()
 
-    def getJetsonfinished(self, reply):
-        print("Get complete")
-        er = reply.error()
-
-        if er == QtNetwork.QNetworkReply.NoError:
-
-            bytes_string = reply.readAll()
-            print(str(bytes_string, 'utf-8'))
-            json_data_temp=json.loads(str(bytes_string, 'utf-8'))
-            #restheart add _id and _etag, so we have to remove it (may be reusing?)
-            del json_data_temp["_id"]
-            del json_data_temp["_etag"]
-            print(json_data_temp)
-            self.json_data = json_data_temp
-            self.ShowJSON(self.json_data)
-
-
-        else:
-            print("Error occured: ", er)
-            print(reply.errorString())
-
-
     def LoadJSONPressed(self):
         url = self.findChild(QtWidgets.QLineEdit, 'urlEdit').text()
-        self.request_qt = QtNetwork.QNetworkRequest(QtCore.QUrl(url))
-        self.manager = QtNetwork.QNetworkAccessManager()
-        self.manager.authenticationRequired.connect(self.auth_req)
-        self.manager.finished.connect(self.getJetsonfinished)
-        self.request = self.manager.get(self.request_qt)
+        r = requests.get(url, allow_redirects=True, auth=('admin', 'secret'))
+        json_data_temp=json.loads(str(r.content, 'utf-8'))
+
+        #restheart add _id and _etag, so we have to remove it (may be reusing?)
+        #but remove only in document, not a collection - so, we detect class dict and remove id`s
+        #dirty code ....
+        if(type(json_data_temp) == type({})):
+            del json_data_temp["_id"]
+            del json_data_temp["_etag"]
+        #dirty code ....
+        self.json_data = json_data_temp
+        self.ShowJSON(self.json_data)
 
     def ShowJSONPressed(self):
         self.ShowJSON(self.json_data)
@@ -146,18 +132,9 @@ class Ui(QtWidgets.QMainWindow):
         jfile = open(fileName)
         self.schema = json.load(jfile, object_pairs_hook=collections.OrderedDict)
 
-    def auth_req(self, req, auth):
-      print("Auth req")
-      auth.setUser("admin")
-      auth.setPassword("secret")
-
     def postJSONPressed(self):
         url = self.findChild(QtWidgets.QLineEdit, 'urlEdit').text()
-        self.request_qt = QtNetwork.QNetworkRequest(QtCore.QUrl(url))
-        self.request_qt.setHeader(QtNetwork.QNetworkRequest.ContentTypeHeader, 'application/json')
-        self.manager = QtNetwork.QNetworkAccessManager()
-        self.manager.authenticationRequired.connect(self.auth_req)
-        self.request = self.manager.post(self.request_qt, json.dumps(self.json_data).encode("utf-8"))
+        filesend_response = requests.post(url, json=self.json_data,  auth=('admin', 'secret'))
 
     def editJSONPressed(self):
         builder = WidgetBuilder()
