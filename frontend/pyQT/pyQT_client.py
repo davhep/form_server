@@ -8,6 +8,7 @@ import argparse
 import collections
 from json import dumps
 import requests
+from urllib.parse import urlparse
 
 from qt_jsonschema_form import WidgetBuilder
 
@@ -55,12 +56,24 @@ class Ui(QtWidgets.QMainWindow):
         self.buttonLoadJSON = self.findChild(QtWidgets.QPushButton, 'loadJSON')
         self.buttonLoadJSON.clicked.connect(self.LoadJSONPressed)
 
+        self.buttonLoadBDschema = self.findChild(QtWidgets.QPushButton, 'loadDBschema')
+        self.buttonLoadBDschema.clicked.connect(self.LoadBDschemaPressed)
+
         self.show()
 
     def on_json_data_change(self,d):
         print(d)
         self.json_data = d
         self.ShowJSONPressed()
+
+    def LoadBDschemaPressed(self):
+        url = self.findChild(QtWidgets.QLineEdit, 'urlEdit').text()
+        r = requests.get(url+'/_meta', allow_redirects=True, auth=('admin', 'secret'))
+        json_data_temp=json.loads(str(r.content, 'utf-8'))
+        schema_id=json_data_temp["jsonSchema"]["schemaId"]
+        parsed_url = urlparse(url)
+        r = requests.get(parsed_url.scheme+"://"+parsed_url.netloc+"/_schemas"+"/"+schema_id , allow_redirects=True, auth=('admin', 'secret'))
+        self.schema = json.loads(str(r.content, 'utf-8'))
 
     def LoadJSONPressed(self):
         url = self.findChild(QtWidgets.QLineEdit, 'urlEdit').text()

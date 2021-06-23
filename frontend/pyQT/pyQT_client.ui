@@ -20,11 +20,11 @@
       <x>706</x>
       <y>30</y>
       <width>211</width>
-      <height>48</height>
+      <height>51</height>
      </rect>
     </property>
     <property name="text">
-     <string>Load schema</string>
+     <string>Schema from file</string>
     </property>
    </widget>
    <widget class="QPlainTextEdit" name="jsonschemafile">
@@ -41,7 +41,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>120</y>
+      <y>170</y>
       <width>147</width>
       <height>48</height>
      </rect>
@@ -73,7 +73,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>http://localhost:8080/inventory</string>
+     <string>http://localhost:8080/users</string>
     </property>
    </widget>
    <widget class="QPushButton" name="postJSON">
@@ -128,6 +128,19 @@
     </property>
     <property name="text">
      <string>Load JSON</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="loadDBschema">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>90</y>
+      <width>211</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Schema from DB</string>
     </property>
    </widget>
   </widget>
