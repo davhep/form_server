@@ -22,7 +22,7 @@ class DB_client():
         r = requests.get(parsed_url.scheme+"://"+parsed_url.netloc+"/_schemas"+"/"+schema_id , allow_redirects=True, auth=('admin', 'secret'))
         self.schema = json.loads(str(r.content, 'utf-8'))
 
-    def postJSON(url, json_data):
+    def postJSON(self, url, json_data):
         filesend_response = requests.post(url, json=json_data,  auth=('admin', 'secret'))
 
     def loadJSON(self, url: str):

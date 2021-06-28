@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>965</width>
-    <height>860</height>
+    <height>1578</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -79,7 +79,7 @@
    <widget class="QPushButton" name="postJSON">
     <property name="geometry">
      <rect>
-      <x>280</x>
+      <x>180</x>
       <y>220</y>
       <width>147</width>
       <height>48</height>
@@ -120,7 +120,7 @@
    <widget class="QPushButton" name="loadJSON">
     <property name="geometry">
      <rect>
-      <x>700</x>
+      <x>340</x>
       <y>220</y>
       <width>147</width>
       <height>48</height>
@@ -133,14 +133,55 @@
    <widget class="QPushButton" name="loadDBschema">
     <property name="geometry">
      <rect>
-      <x>710</x>
-      <y>90</y>
+      <x>720</x>
+      <y>220</y>
       <width>211</width>
       <height>41</height>
      </rect>
     </property>
     <property name="text">
      <string>Schema from DB</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="ListofDocs">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>800</y>
+      <width>181</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>List of Docs</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>880</y>
+      <width>911</width>
+      <height>661</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="listofDocs">
+     <item>
+      <widget class="QColumnView" name="columnView"/>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QPushButton" name="newDocButton">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>800</y>
+      <width>147</width>
+      <height>48</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>New Doc</string>
     </property>
    </widget>
   </widget>
