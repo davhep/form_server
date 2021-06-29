@@ -79,8 +79,8 @@
    <widget class="QPushButton" name="postJSON">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>220</y>
+      <x>680</x>
+      <y>800</y>
       <width>147</width>
       <height>48</height>
      </rect>
@@ -88,21 +88,6 @@
     <property name="text">
      <string>POST JSON</string>
     </property>
-   </widget>
-   <widget class="QTreeWidget" name="JSONtreeWidget">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>360</y>
-      <width>911</width>
-      <height>421</height>
-     </rect>
-    </property>
-    <column>
-     <property name="text">
-      <string notr="true">1</string>
-     </property>
-    </column>
    </widget>
    <widget class="QPushButton" name="showJSON">
     <property name="geometry">
@@ -183,6 +168,29 @@
     <property name="text">
      <string>New Doc</string>
     </property>
+   </widget>
+   <widget class="QTabWidget" name="tabDocEdit">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>350</y>
+      <width>901</width>
+      <height>431</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>1</number>
+    </property>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>Tab 1</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="tab_2">
+     <attribute name="title">
+      <string>Tab 2</string>
+     </attribute>
+    </widget>
    </widget>
   </widget>
  </widget>

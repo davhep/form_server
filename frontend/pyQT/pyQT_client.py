@@ -54,7 +54,7 @@ class Ui(QtWidgets.QMainWindow):
         self.layoutlistofDocs = self.findChild(QtWidgets.QVBoxLayout, 'listofDocs')
         self.layoutlistofDocs.addWidget(self.listofDocs)
 
-        self.tree_widget = self.findChild(QtWidgets.QTreeWidget, 'JSONtreeWidget')
+        self.tabDocEditor = self.findChild(QtWidgets.QTabWidget, 'tabDocEdit')
 
         self.show()
 
@@ -64,7 +64,7 @@ class Ui(QtWidgets.QMainWindow):
     def on_json_data_change(self,d):
         print(d)
         self.json_data = d
-        self.ShowJSON(self.json_data)
+        #self.ShowJSON(self.json_data)
 
     def ShowJSONPressed(self):
         self.ShowJSON(self.json_data)
@@ -108,6 +108,19 @@ class Ui(QtWidgets.QMainWindow):
         form.show()
 
     def buttonnewDocPressed(self):
+        builder = WidgetBuilder()
+        ui_schema = {
+            "buil_color": {
+                "ui:widget": "colour"
+            },
+            "sended_file": {
+                "ui:widget": "remotefilesend"
+            }
+        }
+        editDocWidget = builder.create_widget(self.dbClient.schema, ui_schema, self.json_data)
+        editDocWidget.on_changed.connect(lambda d: self.on_json_data_change(d))
+        current_tab = self.tabDocEditor.addTab(editDocWidget, "Doc")
+        self.tabDocEditor.setCurrentIndex(current_tab)
         print("buttonnewDocPressed")
 
 
