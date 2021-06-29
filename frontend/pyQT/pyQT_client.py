@@ -1,6 +1,7 @@
 from PyQt5 import QtWidgets, uic, QtCore, QtNetwork
 from PyQt5.QtWidgets import QApplication, QWidget, QInputDialog, QLineEdit, QFileDialog
 from PyQt5.QtGui import QIcon
+from PyQt5.QtCore import QTimer
 
 import sys
 import json
@@ -25,6 +26,7 @@ class Ui(QtWidgets.QMainWindow):
         self.json_data = {}
 
         self.urlWidget = self.findChild(QtWidgets.QLineEdit, 'urlEdit')
+        self.dbClient.LoadBDschema(self.urlWidget.text())
 
         self.button = self.findChild(QtWidgets.QPushButton, 'selectSchema')
         self.button.clicked.connect(self.selectSchemaButtonPressed)
@@ -45,7 +47,7 @@ class Ui(QtWidgets.QMainWindow):
         self.buttonLoadJSON.clicked.connect(self.LoadJSONPressed)
 
         self.buttonListOfDocs = self.findChild(QtWidgets.QPushButton, 'ListofDocs')
-        self.buttonListOfDocs.clicked.connect(self.ListOfDocsPressed)
+        self.buttonListOfDocs.clicked.connect(self.ShowListOfDocs)
 
         self.buttonLoadBDschema = self.findChild(QtWidgets.QPushButton, 'loadDBschema')
         self.buttonLoadBDschema.clicked.connect(lambda: self.dbClient.LoadBDschema(self.urlWidget.text()))
@@ -54,12 +56,21 @@ class Ui(QtWidgets.QMainWindow):
         self.layoutlistofDocs = self.findChild(QtWidgets.QVBoxLayout, 'listofDocs')
         self.layoutlistofDocs.addWidget(self.listofDocs)
 
+        self.timer=QTimer()
+        self.timer.timeout.connect(self.TimerForListOfDocs)
+        self.timer.start(5000)
+
         self.tabDocEditor = self.findChild(QtWidgets.QTabWidget, 'tabDocEdit')
 
         self.show()
 
+    def TimerForListOfDocs(self):
+        self.ShowListOfDocs()
+        self.timer.start(5000)
+
     def buttonPOSTpressed(self):
         self.dbClient.postJSON(self.urlWidget.text(), self.json_data)
+        self.ShowListOfDocs()
 
     def on_json_data_change(self,d):
         print(d)
@@ -80,7 +91,7 @@ class Ui(QtWidgets.QMainWindow):
         self.tree_widget.addTopLevelItem(json_tree_widget.json_tree_widget(json_data_input))
         self.tree_widget.show()
 
-    def ListOfDocsPressed(self):
+    def ShowListOfDocs(self):
         self.listofDocs.fill_table(self.dbClient.loadJSON(self.urlWidget.text()))
 
     def selectSchemaButtonPressed(self):
