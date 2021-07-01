@@ -58,7 +58,7 @@ class Ui(QtWidgets.QMainWindow):
 
         self.timer=QTimer()
         self.timer.timeout.connect(self.TimerForListOfDocs)
-        self.timer.start(5000)
+        self.timer.start(500)
 
         self.tabDocEditor = self.findChild(QtWidgets.QTabWidget, 'tabDocEdit')
 
