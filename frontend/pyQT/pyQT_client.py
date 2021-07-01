@@ -35,7 +35,7 @@ class Ui(QtWidgets.QMainWindow):
         self.buttonJE.clicked.connect(self.editJSONPressed)
 
         self.buttonnewDoc = self.findChild(QtWidgets.QPushButton, 'newDocButton')
-        self.buttonnewDoc.clicked.connect(self.buttonnewDocPressed)
+        self.buttonnewDoc.clicked.connect(self.editJSONPressed)
 
         self.buttonPOST = self.findChild(QtWidgets.QPushButton, 'postJSON')
         self.buttonPOST.clicked.connect( self.buttonPOSTpressed)
@@ -92,7 +92,16 @@ class Ui(QtWidgets.QMainWindow):
         self.tree_widget.show()
 
     def ShowListOfDocs(self):
-        self.listofDocs.fill_table(self.dbClient.loadJSON(self.urlWidget.text()))
+        self.json_list_local = self.dbClient.loadJSON(self.urlWidget.text())
+        self.listofDocs.fill_table(self.json_list_local)
+        self.listofDocs.cellPressed.connect(self.cell_Pressed)
+
+    def cell_Pressed(self, row, column):
+        print(row, column)
+        url = self.urlWidget.text()+'/'+self.json_list_local[row]["_id"]["$oid"]
+        self.json_data = self.dbClient.loadJSON(url)
+        self.editJSONPressed()
+
 
     def selectSchemaButtonPressed(self):
         options = QFileDialog.Options()

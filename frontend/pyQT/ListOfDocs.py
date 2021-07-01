@@ -35,7 +35,7 @@ class ListOfDocs(QtWidgets.QTableWidget):
             self.insertRow(row_num)
             for column_num, v in enumerate(row):
                 it = QtWidgets.QTableWidgetItem(str(v))
-                it.setFlags(it.flags() and QtCore.Qt.ItemIsEditable and QtCore.Qt.ItemIsSelectable)
+                #it.setFlags(it.flags() and QtCore.Qt.ItemIsEditable and QtCore.Qt.ItemIsSelectable)
                 self.setItem(row_num, column_num, it)
 
 
