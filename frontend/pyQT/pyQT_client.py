@@ -28,11 +28,11 @@ class Ui(QtWidgets.QMainWindow):
         self.urlWidget = self.findChild(QtWidgets.QLineEdit, 'urlEdit')
         self.dbClient.LoadBDschema(self.urlWidget.text())
 
-        self.button = self.findChild(QtWidgets.QPushButton, 'selectSchema')
-        self.button.clicked.connect(self.selectSchemaButtonPressed)
+        #self.button = self.findChild(QtWidgets.QPushButton, 'selectSchema')
+        #self.button.clicked.connect(self.selectSchemaButtonPressed)
 
-        self.buttonJE = self.findChild(QtWidgets.QPushButton, 'editJSON')
-        self.buttonJE.clicked.connect(self.editJSONPressed)
+        #self.buttonJE = self.findChild(QtWidgets.QPushButton, 'editJSON')
+        #self.buttonJE.clicked.connect(self.editJSONPressed)
 
         self.buttonnewDoc = self.findChild(QtWidgets.QPushButton, 'newDocButton')
         self.buttonnewDoc.clicked.connect(self.editJSONPressed)
@@ -40,11 +40,11 @@ class Ui(QtWidgets.QMainWindow):
         self.buttonPOST = self.findChild(QtWidgets.QPushButton, 'postJSON')
         self.buttonPOST.clicked.connect( self.buttonPOSTpressed)
 
-        self.buttonShowJSON = self.findChild(QtWidgets.QPushButton, 'showJSON')
-        self.buttonShowJSON.clicked.connect(self.ShowJSONPressed)
+        #self.buttonShowJSON = self.findChild(QtWidgets.QPushButton, 'showJSON')
+        #self.buttonShowJSON.clicked.connect(self.ShowJSONPressed)
 
-        self.buttonLoadJSON = self.findChild(QtWidgets.QPushButton, 'loadJSON')
-        self.buttonLoadJSON.clicked.connect(self.LoadJSONPressed)
+        #self.buttonLoadJSON = self.findChild(QtWidgets.QPushButton, 'loadJSON')
+        #self.buttonLoadJSON.clicked.connect(self.LoadJSONPressed)
 
         self.buttonListOfDocs = self.findChild(QtWidgets.QPushButton, 'ListofDocs')
         self.buttonListOfDocs.clicked.connect(self.ShowListOfDocs)
@@ -60,7 +60,7 @@ class Ui(QtWidgets.QMainWindow):
         self.timer.timeout.connect(self.TimerForListOfDocs)
         self.timer.start(500)
 
-        self.tabDocEditor = self.findChild(QtWidgets.QTabWidget, 'tabDocEdit')
+        self. DocEditLayout = self.findChild(QtWidgets.QGridLayout, 'DocEditLayout')
 
         self.show()
 
@@ -113,7 +113,7 @@ class Ui(QtWidgets.QMainWindow):
         jfile = open(fileName)
         self.schema = json.load(jfile, object_pairs_hook=collections.OrderedDict)
 
-    def editJSONPressed(self):
+    def buttonnewDocPressed(self):
         builder = WidgetBuilder()
         ui_schema = {
             "buil_color": {
@@ -127,7 +127,7 @@ class Ui(QtWidgets.QMainWindow):
         form.widget.on_changed.connect(lambda d: self.on_json_data_change(d))
         form.show()
 
-    def buttonnewDocPressed(self):
+    def editJSONPressed(self):
         builder = WidgetBuilder()
         ui_schema = {
             "buil_color": {
@@ -137,10 +137,12 @@ class Ui(QtWidgets.QMainWindow):
                 "ui:widget": "remotefilesend"
             }
         }
-        editDocWidget = builder.create_widget(self.dbClient.schema, ui_schema, self.json_data)
-        editDocWidget.on_changed.connect(lambda d: self.on_json_data_change(d))
-        current_tab = self.tabDocEditor.addTab(editDocWidget, "Doc")
-        self.tabDocEditor.setCurrentIndex(current_tab)
+        if (self.DocEditLayout.count()>0):
+            self.DocEditWidget.deleteLater()
+        self.DocEditWidget = builder.create_widget(self.dbClient.schema, ui_schema, self.json_data)
+        self.DocEditLayout.addWidget(self.DocEditWidget)
+        self.DocEditWidget.on_changed.connect(lambda d: self.on_json_data_change(d))
+        self.DocEditWidget.show()
         print("buttonnewDocPressed")
 
 

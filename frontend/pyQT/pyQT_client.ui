@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>965</width>
+    <width>1922</width>
     <height>1578</height>
    </rect>
   </property>
@@ -14,184 +14,57 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="selectSchema">
-    <property name="geometry">
-     <rect>
-      <x>706</x>
-      <y>30</y>
-      <width>211</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Schema from file</string>
-    </property>
-   </widget>
-   <widget class="QPlainTextEdit" name="jsonschemafile">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>30</y>
-      <width>661</width>
-      <height>51</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="editJSON">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>170</y>
-      <width>147</width>
-      <height>48</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Edit Json</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>230</y>
-      <width>361</width>
-      <height>34</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>URL to POST:</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="urlEdit">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>290</y>
-      <width>911</width>
-      <height>42</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>http://localhost:8080/users</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="postJSON">
-    <property name="geometry">
-     <rect>
-      <x>680</x>
-      <y>800</y>
-      <width>147</width>
-      <height>48</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>POST JSON</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="showJSON">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>800</y>
-      <width>261</width>
-      <height>48</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Show current JSON</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="loadJSON">
-    <property name="geometry">
-     <rect>
-      <x>340</x>
-      <y>220</y>
-      <width>147</width>
-      <height>48</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Load JSON</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="loadDBschema">
-    <property name="geometry">
-     <rect>
-      <x>720</x>
-      <y>220</y>
-      <width>211</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Schema from DB</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="ListofDocs">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>800</y>
-      <width>181</width>
-      <height>48</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>List of Docs</string>
-    </property>
-   </widget>
-   <widget class="QWidget" name="verticalLayoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>880</y>
-      <width>911</width>
-      <height>661</height>
-     </rect>
-    </property>
-    <layout class="QVBoxLayout" name="listofDocs">
-     <item>
-      <widget class="QColumnView" name="columnView"/>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QPushButton" name="newDocButton">
-    <property name="geometry">
-     <rect>
-      <x>510</x>
-      <y>800</y>
-      <width>147</width>
-      <height>48</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>New Doc</string>
-    </property>
-   </widget>
-   <widget class="QTabWidget" name="tabDocEdit">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>350</y>
-      <width>901</width>
-      <height>431</height>
-     </rect>
-    </property>
-    <property name="currentIndex">
-     <number>1</number>
-    </property>
-    <widget class="QWidget" name="tab">
-     <attribute name="title">
-      <string>Tab 1</string>
-     </attribute>
-    </widget>
-    <widget class="QWidget" name="tab_2">
-     <attribute name="title">
-      <string>Tab 2</string>
-     </attribute>
-    </widget>
-   </widget>
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="0" column="0">
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0">
+       <widget class="QLineEdit" name="urlEdit">
+        <property name="text">
+         <string>http://31.204.175.117:8080/inventory</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <layout class="QVBoxLayout" name="listofDocs"/>
+      </item>
+      <item row="2" column="0">
+       <layout class="QGridLayout" name="DocEditLayout"/>
+      </item>
+      <item row="3" column="0">
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QPushButton" name="ListofDocs">
+          <property name="text">
+           <string>List of Docs</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="newDocButton">
+          <property name="text">
+           <string>New Doc</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="postJSON">
+          <property name="text">
+           <string>POST JSON</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="1" column="0">
+       <widget class="QPushButton" name="loadDBschema">
+        <property name="text">
+         <string>Schema from DB</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources/>
