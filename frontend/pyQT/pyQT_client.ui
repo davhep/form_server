@@ -17,6 +17,20 @@
    <layout class="QGridLayout" name="gridLayout_2">
     <item row="0" column="0">
      <layout class="QGridLayout" name="gridLayout">
+      <item row="1" column="0">
+       <widget class="QPushButton" name="ConnecttoDB">
+        <property name="text">
+         <string>Connect to DB</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QPushButton" name="newDocButton">
+        <property name="text">
+         <string>New Doc</string>
+        </property>
+       </widget>
+      </item>
       <item row="0" column="0">
        <widget class="QLineEdit" name="urlEdit">
         <property name="text">
@@ -24,41 +38,16 @@
         </property>
        </widget>
       </item>
-      <item row="4" column="0">
+      <item row="5" column="0">
        <layout class="QVBoxLayout" name="listofDocs"/>
       </item>
-      <item row="2" column="0">
+      <item row="4" column="0">
        <layout class="QGridLayout" name="DocEditLayout"/>
       </item>
       <item row="3" column="0">
-       <layout class="QHBoxLayout" name="horizontalLayout_2">
-        <item>
-         <widget class="QPushButton" name="ListofDocs">
-          <property name="text">
-           <string>List of Docs</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="newDocButton">
-          <property name="text">
-           <string>New Doc</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="postJSON">
-          <property name="text">
-           <string>POST JSON</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item row="1" column="0">
-       <widget class="QPushButton" name="loadDBschema">
+       <widget class="QPushButton" name="postJSON">
         <property name="text">
-         <string>Schema from DB</string>
+         <string>POST JSON</string>
         </property>
        </widget>
       </item>

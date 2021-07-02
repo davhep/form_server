@@ -35,9 +35,11 @@ class Ui(QtWidgets.QMainWindow):
         #self.buttonJE.clicked.connect(self.editJSONPressed)
 
         self.buttonnewDoc = self.findChild(QtWidgets.QPushButton, 'newDocButton')
+        self.buttonnewDoc.setEnabled(False)
         self.buttonnewDoc.clicked.connect(self.editJSONPressed)
 
         self.buttonPOST = self.findChild(QtWidgets.QPushButton, 'postJSON')
+        self.buttonPOST.setEnabled(False)
         self.buttonPOST.clicked.connect( self.buttonPOSTpressed)
 
         #self.buttonShowJSON = self.findChild(QtWidgets.QPushButton, 'showJSON')
@@ -46,23 +48,37 @@ class Ui(QtWidgets.QMainWindow):
         #self.buttonLoadJSON = self.findChild(QtWidgets.QPushButton, 'loadJSON')
         #self.buttonLoadJSON.clicked.connect(self.LoadJSONPressed)
 
-        self.buttonListOfDocs = self.findChild(QtWidgets.QPushButton, 'ListofDocs')
-        self.buttonListOfDocs.clicked.connect(self.ShowListOfDocs)
+        #self.buttonListOfDocs = self.findChild(QtWidgets.QPushButton, 'ListofDocs')
+        #self.buttonListOfDocs.setEnabled(False)
+        #self.buttonListOfDocs.clicked.connect(self.ShowListOfDocs)
 
-        self.buttonLoadBDschema = self.findChild(QtWidgets.QPushButton, 'loadDBschema')
-        self.buttonLoadBDschema.clicked.connect(lambda: self.dbClient.LoadBDschema(self.urlWidget.text()))
+        self.ConnecttoDB = self.findChild(QtWidgets.QPushButton, 'ConnecttoDB')
+        self.ConnecttoDB.clicked.connect(self.ConnecttoDBpressed)
 
         self.listofDocs = ListOfDocs.ListOfDocs()
         self.layoutlistofDocs = self.findChild(QtWidgets.QVBoxLayout, 'listofDocs')
         self.layoutlistofDocs.addWidget(self.listofDocs)
 
-        self.timer=QTimer()
-        self.timer.timeout.connect(self.TimerForListOfDocs)
-        self.timer.start(500)
+
 
         self. DocEditLayout = self.findChild(QtWidgets.QGridLayout, 'DocEditLayout')
 
         self.show()
+
+    def ConnecttoDBpressed(self):
+        try:
+            self.dbClient.LoadBDschema(self.urlWidget.text())
+        except:
+            print("AAAA")
+        else:
+            print("OK")
+            self.timer=QTimer()
+            self.timer.timeout.connect(self.TimerForListOfDocs)
+            self.timer.start(500)
+            self.buttonnewDoc.setEnabled(True)
+            self.buttonPOST.setEnabled(True)
+
+
 
     def TimerForListOfDocs(self):
         self.ShowListOfDocs()
