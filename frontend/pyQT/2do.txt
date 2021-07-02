@@ -1,9 +1,8 @@
+script for datrabase population
 ===========================
-sync of database and front-end JSON schemes
+install instructions
 ===========================
-Add load and change JSON document
-===========================
-In browser PyQT5 execution
+make paths (upload to etc) relative to base dir
 ===========================
 Android app build
 ===========================
@@ -21,3 +20,14 @@ Add file transfer capability:
     2) add to JSON persistance url
     3) add to JSON original path and file-name
 ===========================
+DONE:
+sync of database and front-end JSON schemes
+===========================
+DONE Add load and change JSON document
+===========================
+
+===========================
+NO good way
+In browser PyQT5 execution
+===========================
+
