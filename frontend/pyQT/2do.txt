@@ -1,3 +1,6 @@
+Matrix keyboard on GPIO
+https://stackoverflow.com/questions/66635214/how-to-use-a-4x4-membrane-keypad-with-tkinter
+===========================
 script for datrabase population
 ===========================
 install instructions
