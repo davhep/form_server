@@ -139,12 +139,14 @@ class Ui(QtWidgets.QMainWindow):
                 "ui:widget": "remotefilesend"
             }
         }
+
         form = builder.create_form(self.dbClient.schema, ui_schema, self.json_data)
         form.widget.on_changed.connect(lambda d: self.on_json_data_change(d))
         form.show()
 
     def editJSONPressed(self):
-        builder = WidgetBuilder()
+        file_helper = lambda file: self.dbClient.send_file(self.urlWidget.text(), file)
+        builder = WidgetBuilder(file_helper)
         ui_schema = {
             "buil_color": {
                 "ui:widget": "colour"

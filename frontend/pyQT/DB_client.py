@@ -36,3 +36,8 @@ class DB_client():
             del json_data["_etag"]
         #dirty code done
         return(json_data)
+
+    def send_file(self, url, file):
+        url = url + '.files'
+        filesend_response = requests.post(url, files = {"file_upload":  file },  auth=('admin', 'secret'))
+        return(filesend_response.headers['Location'])
