@@ -32,8 +32,10 @@ class DB_client():
         #but remove only in document, not a collection - so, we detect class dict and remove id`s
         #dirty code ....
         if(type(json_data) == type({})):
-            del json_data["_id"]
-            del json_data["_etag"]
+            if '_id' in json_data:
+                del json_data['_id']
+            if '_etag' in json_data:
+                del json_data['_etag']
         #dirty code done
         return(json_data)
 
@@ -46,6 +48,6 @@ class DB_client():
         fileget_reponse = requests.get(url+'/binary', stream=True, auth=('admin', 'secret'))
         if fileget_reponse.status_code == 200:
             fileget_reponse.raw.decode_content = True
-            return(fileget_reponse.raw)
+            return(fileget_reponse.raw.data)
         else:
             return(None)
