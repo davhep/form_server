@@ -41,3 +41,11 @@ class DB_client():
         url = url + '.files'
         filesend_response = requests.post(url, files = {"file_upload":  file },  auth=('admin', 'secret'))
         return(filesend_response.headers['Location'])
+
+    def get_file(self, url):
+        fileget_reponse = requests.get(url+'/binary', stream=True, auth=('admin', 'secret'))
+        if fileget_reponse.status_code == 200:
+            fileget_reponse.raw.decode_content = True
+            return(fileget_reponse.raw)
+        else:
+            return(None)

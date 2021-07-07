@@ -145,8 +145,9 @@ class Ui(QtWidgets.QMainWindow):
         form.show()
 
     def editJSONPressed(self):
-        file_helper = lambda file: self.dbClient.send_file(self.urlWidget.text(), file)
-        builder = WidgetBuilder(file_helper)
+        put_file_helper = lambda file: self.dbClient.send_file(self.urlWidget.text(), file)
+        get_file_helper = lambda url: self.dbClient.get_file(url)
+        builder = WidgetBuilder(put_file_helper, get_file_helper)
         ui_schema = {
             "buil_color": {
                 "ui:widget": "colour"
