@@ -1,11 +1,6 @@
 Matrix keyboard on GPIO
 https://stackoverflow.com/questions/66635214/how-to-use-a-4x4-membrane-keypad-with-tkinter
-===========================
-script for datrabase population
-===========================
-install instructions
-===========================
-make paths (upload to etc) relative to base dir
+use pull-down resistors
 ===========================
 Android app build
 ===========================
@@ -27,6 +22,11 @@ DONE:
 sync of database and front-end JSON schemes
 ===========================
 DONE Add load and change JSON document
+===========================
+DONE script for datrabase population
+    install instructions
+===========================
+DONE make paths (upload to etc) relative to base dir
 ===========================
 
 ===========================
