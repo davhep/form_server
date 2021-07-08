@@ -23,34 +23,16 @@ class Ui(QtWidgets.QMainWindow):
         uic.loadUi('pyQT_client.ui', self)
         self.dbClient = DB_client.DB_client()
 
-        self.json_data = {}
-
         self.urlWidget = self.findChild(QtWidgets.QLineEdit, 'urlEdit')
         self.dbClient.LoadBDschema(self.urlWidget.text())
 
-        #self.button = self.findChild(QtWidgets.QPushButton, 'selectSchema')
-        #self.button.clicked.connect(self.selectSchemaButtonPressed)
-
-        #self.buttonJE = self.findChild(QtWidgets.QPushButton, 'editJSON')
-        #self.buttonJE.clicked.connect(self.editJSONPressed)
-
         self.buttonnewDoc = self.findChild(QtWidgets.QPushButton, 'newDocButton')
         self.buttonnewDoc.setEnabled(False)
-        self.buttonnewDoc.clicked.connect(self.editJSONPressed)
+        self.buttonnewDoc.clicked.connect(self.editJSON)
 
         self.buttonPOST = self.findChild(QtWidgets.QPushButton, 'postJSON')
         self.buttonPOST.setEnabled(False)
         self.buttonPOST.clicked.connect( self.buttonPOSTpressed)
-
-        #self.buttonShowJSON = self.findChild(QtWidgets.QPushButton, 'showJSON')
-        #self.buttonShowJSON.clicked.connect(self.ShowJSONPressed)
-
-        #self.buttonLoadJSON = self.findChild(QtWidgets.QPushButton, 'loadJSON')
-        #self.buttonLoadJSON.clicked.connect(self.LoadJSONPressed)
-
-        #self.buttonListOfDocs = self.findChild(QtWidgets.QPushButton, 'ListofDocs')
-        #self.buttonListOfDocs.setEnabled(False)
-        #self.buttonListOfDocs.clicked.connect(self.ShowListOfDocs)
 
         self.ConnecttoDB = self.findChild(QtWidgets.QPushButton, 'ConnecttoDB')
         self.ConnecttoDB.clicked.connect(self.ConnecttoDBpressed)
@@ -58,8 +40,6 @@ class Ui(QtWidgets.QMainWindow):
         self.listofDocs = ListOfDocs.ListOfDocs()
         self.layoutlistofDocs = self.findChild(QtWidgets.QVBoxLayout, 'listofDocs')
         self.layoutlistofDocs.addWidget(self.listofDocs)
-
-
 
         self. DocEditLayout = self.findChild(QtWidgets.QGridLayout, 'DocEditLayout')
 
@@ -85,20 +65,8 @@ class Ui(QtWidgets.QMainWindow):
         self.timer.start(5000)
 
     def buttonPOSTpressed(self):
-        self.dbClient.postJSON(self.urlWidget.text(), self.json_data)
+        self.dbClient.postJSON(self.urlWidget.text(), self.DocEditWidget.state)
         self.ShowListOfDocs()
-
-    def on_json_data_change(self,d):
-        print(d)
-        self.json_data = d
-        #self.ShowJSON(self.json_data)
-
-    def ShowJSONPressed(self):
-        self.ShowJSON(self.json_data)
-
-    def LoadJSONPressed(self):
-        self.json_data = self.dbClient.loadJSON(self.urlWidget.text())
-        self.ShowJSON(self.json_data)
 
     def ShowJSON(self, json_data_input):
         self.tree_widget.clear()
@@ -113,10 +81,8 @@ class Ui(QtWidgets.QMainWindow):
         self.listofDocs.cellPressed.connect(self.cell_Pressed)
 
     def cell_Pressed(self, row, column):
-        print(row, column)
         url = self.urlWidget.text()+'/'+self.json_list_local[row]["_id"]["$oid"]
-        self.json_data = self.dbClient.loadJSON(url)
-        self.editJSONPressed()
+        self.editJSON(self.dbClient.loadJSON(url))
 
 
     def selectSchemaButtonPressed(self):
@@ -129,22 +95,7 @@ class Ui(QtWidgets.QMainWindow):
         jfile = open(fileName)
         self.schema = json.load(jfile, object_pairs_hook=collections.OrderedDict)
 
-    def buttonnewDocPressed(self):
-        builder = WidgetBuilder()
-        ui_schema = {
-            "buil_color": {
-                "ui:widget": "colour"
-            },
-            "sended_file": {
-                "ui:widget": "remotefilesend"
-            }
-        }
-
-        form = builder.create_form(self.dbClient.schema, ui_schema, self.json_data)
-        form.widget.on_changed.connect(lambda d: self.on_json_data_change(d))
-        form.show()
-
-    def editJSONPressed(self):
+    def editJSON(self, json_data = None):
         put_file_helper = lambda file: self.dbClient.send_file(self.urlWidget.text(), file)
         get_file_helper = lambda url: self.dbClient.get_file(url)
         get_file_props_helper = lambda url: self.dbClient.loadJSON(url)
@@ -159,12 +110,13 @@ class Ui(QtWidgets.QMainWindow):
         }
         if (self.DocEditLayout.count()>0):
             self.DocEditWidget.deleteLater()
-        self.DocEditWidget = builder.create_widget(self.dbClient.schema, ui_schema, self.json_data)
-        self.DocEditLayout.addWidget(self.DocEditWidget)
-        self.DocEditWidget.on_changed.connect(lambda d: self.on_json_data_change(d))
-        self.DocEditWidget.show()
-        print("buttonnewDocPressed")
 
+        if json_data:
+             self.DocEditWidget = builder.create_widget(self.dbClient.schema, ui_schema, json_data)
+        else:
+             self.DocEditWidget = builder.create_widget(self.dbClient.schema, ui_schema)
+        self.DocEditLayout.addWidget(self.DocEditWidget)
+        self.DocEditWidget.show()
 
 app = QtWidgets.QApplication(sys.argv)
 window = Ui()
