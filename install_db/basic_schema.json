@@ -3,7 +3,8 @@
         "title": "INPUT TEST for BUIL on 100 shots",
         "properties": {
             "User mood after buil unpacking": {
-		"type": "string"
+		"type": "string",
+		"qml_entity": "pure_string"
             },
 
         "integerRangeSteps": {
@@ -11,20 +12,23 @@
                 "type": "integer",
                 "minimum": 0,
                 "maximum": 100,
-                "multipleOf": 1
+                "multipleOf": 1,
+                "qml_entity": "integer_range"
             },
         "buil_color": {
 		"title": "Color of BUIL after 100 shots",
-                "type": "string"
+                "type": "string",
+		"qml_entity": "pure_string"
             },
 
         "buil_photo": {
             "title": "Photo of BUIL after 100 shootings",
             "type": "string",
-            "urlsendto": "http://127.0.0.1:8080/inventory.files"
+	    "qml_entity": "pure_string"
 	    },
 	"sended_file": {
 		"type": "object",
+		"qml_entity": "file",
 		"urlsendto": "http://127.0.0.1:8080/inventory.files",
 		"properties":{
 		"file_src":{
@@ -36,5 +40,7 @@
 			}
 		}
 	}
-    }
+    },
+    "order_of_tasks": ["User mood after buil unpacking", "integerRangeSteps", "buil_color", "buil_photo", "sended_file"]
+
 }
